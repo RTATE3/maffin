@@ -1,6 +1,6 @@
 import sqlite3
 
-with sqlite3.connect('maffin') as connection:
+with sqlite3.connect(r'C:\Users\edgerunner\PycharmProjects\maffin\maffin.db') as connection:
     cursor = connection.cursor()
-    cursor.execute('CREATE TABLE Users (id INT AUTO_INCREMENT PRIMARY KEY,
-    cursor.execute('CREATE TABLE Transaction (id INT AUTO_INCREMENT PRIMARY KEY, date TEXT, categoria TEXT, summ INT
+    cursor.execute('CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, login TXT, password TXT);')
+    cursor.execute('CREATE TABLE IF NOT EXISTS FinTransaction (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, categoria TEXT, summ INT);')

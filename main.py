@@ -11,7 +11,9 @@
 # root.mainloop()
 
 import sqlite3
+import datetime
 transaction = input('Доходы или расходы? 1/0')
+current_date = datetime.datetime.now()
 
 
 class Expenses:
@@ -20,18 +22,20 @@ class Expenses:
         self.categoria = categoria
         self.summ = summ
 
-with sqlite3.connect('maffin') as connection:
+
+with sqlite3.connect('maffin.db') as connection:
     cursor = connection.cursor()
     if int(transaction):
         revenues = input('Сколько?')
-        print(revenues)
-        cursor.execute('INSERT INTO
+        cursor.execute('INSERT INTO FinTransaction (date, summ, categoria) VALUES (?, ?, ?)',
+                       (str(current_date), int(revenues), 'Доход'))
+
     else:
         expenses = Expenses(categoria=input('Введите категорию вашего расхода: '),
                             summ=input('Введите сумму вашего расхода: '))
         print(expenses.categoria)
         print(expenses.summ)
-        cursor.execute('INSERT INTO
+        # cursor.execute('INSERT INTO
 
 
 
